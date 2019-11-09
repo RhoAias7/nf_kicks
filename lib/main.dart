@@ -1,4 +1,5 @@
 import 'package:nf_kicks/components/horizontal_listview.dart';
+import 'package:nf_kicks/components/products.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
@@ -70,9 +71,18 @@ class _HomePageState extends State<HomePage> {
         children: <Widget>[
           image_carousel,
           Padding(
+            child: Text("Categories"),
             padding: EdgeInsets.all(8.0),
           ),
           HorizontalList(),
+          Padding(
+            child: Text("Recent Products"),
+            padding: EdgeInsets.all(8.0),
+          ),
+          Container(
+            height: 320,
+            child: Products(),
+          ),
         ],
       ),
       //TODO 2 - Overhaul/remove drawer
