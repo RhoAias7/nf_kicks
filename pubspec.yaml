@@ -17,6 +17,7 @@ environment:
   sdk: ">=2.1.0 <3.0.0"
 
 dependencies:
+  nfc_in_flutter: ^2.0.1
   carousel_pro: ^1.0.0
   flutter:
     sdk: flutter

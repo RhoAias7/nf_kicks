@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:nf_kicks/components/horizontal_listview.dart';
 import 'package:nf_kicks/components/products.dart';
 import 'package:flutter/material.dart';
+import 'package:nfc_in_flutter/nfc_in_flutter.dart';
 import 'package:carousel_pro/carousel_pro.dart';
 
 //TODO 4 - See if the project can be modularized
@@ -17,6 +20,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  StreamSubscription<NDEFMessage> _stream;
+
+  void _startScanning() {
+    setState(() {
+      _stream = NFC.readNDEF(once: true).listen((NDEFMessage message) {
+        print("Read NDEF message with ${message.records.length} records");
+        for (NDEFRecord record in message.records) {
+          print(
+              "Record '${record.id ?? "[NO ID]"}' with TNF '${record.tnf}', type '${record.type}', payload '${record.payload}' and data '${record.data}' and language code '${record.languageCode}'");
+        }
+      });
+    });
+  }
   @override
   Widget build(BuildContext context) {
     //TODO 5 - Should be in its own class
@@ -26,11 +42,11 @@ class _HomePageState extends State<HomePage> {
         boxFit: BoxFit.cover,
         images: [
           NetworkImage(
-              'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwallpapershome.com%2Fimages%2Fwallpapers%2Fgeorgia-may-jagger-3840x2160-top-fashion-models-2015-model-glasses-3153.jpg&f=1&nofb=1'),
+              'http://4.bp.blogspot.com/-QPW4Ji_4ANw/Uev6kdLrNxI/AAAAAAAAT_o/MNYz4oCLL_M/s1600/irina_sheik_0034.jpg'),
           NetworkImage(
-              'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.wallpapersin4k.org%2Fwp-content%2Fuploads%2F2017%2F04%2FFashion-Model-Wallpaper-4.jpg&f=1&nofb=1'),
+              'https://wallpapershome.com/images/wallpapers/faith-picozzi-5120x2880-top-fashion-models-2015-model-red-hair-beauty-3066.jpg'),
           NetworkImage(
-              'https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.pixelstalk.net%2Fwp-content%2Fuploads%2F2016%2F06%2FHot-fashion-model-teresa-moore-wallpaper-hd.jpg&f=1&nofb=1'),
+              'https://wallpapershome.com/images/wallpapers/ophelie-guillermand-3072x1981-top-fashion-models-model-6875.jpg'),
         ],
         autoplay: true,
         animationDuration: Duration(milliseconds: 1000),
@@ -53,6 +69,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
             onPressed: () {
+              _startScanning();
               print("clicked search");
             },
           ),
@@ -86,6 +103,7 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
       //TODO 2 - Overhaul/remove drawer
+      //TODO 6 - rename classes
       drawer: Drawer(
         child: new ListView(
           children: <Widget>[
