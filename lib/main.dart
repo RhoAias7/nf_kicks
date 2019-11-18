@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:nf_kicks/pages/cart.dart';
 import 'package:nf_kicks/components/horizontal_listview.dart';
 import 'package:nf_kicks/components/products.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,6 @@ class _HomePageState extends State<HomePage> {
             ),
             onPressed: () {
               _startScanning();
-              print("clicked search");
             },
           ),
           IconButton(
@@ -79,6 +79,7 @@ class _HomePageState extends State<HomePage> {
               color: Colors.white,
             ),
             onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => new Cart()));
               print("clicked cart");
             },
           ),
