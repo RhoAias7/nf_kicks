@@ -1,6 +1,6 @@
 # nf_kicks
 
-4th year computing project
+Prototype for presentation
 
 ## Getting Started
 
