@@ -21,10 +21,10 @@ class _PopularProductsState extends State<PopularProducts> {
         image:
         "https://ae01.alicdn.com/kf/HTB1MIu6cA5E3KVjSZFCq6zuzXXaD/Weweya-Woven-Men-Casual-Shoes-Breathable-Male-Shoes-Tenis-Masculino-Shoes-Zapatos-Hombre-Sapatos-Outdoor-Shoes.jpg",
         price: 110),
-    Product(name: "Jordan ADG",
+    Product(name: "Nike ADG",
         image: "https://ae01.alicdn.com/kf/H7587a9100854474993b0bbbf3636829fq/Men-Casual-Shoes-adult-Spring-autumn-Classic-Fashion-Male-Lace-up-Flats-Comfortable-Sneakers-3-colors.jpg_640x640.jpg",
         price: 140),
-    Product(name: "AIR JORDAN IV RETRO",
+    Product(name: "Air Jordans IV RETRO",
         image: "https://ae01.alicdn.com/kf/Hbec187de5f124187b4023476a9ea097fz/Shoes-Men-Sneakers-Autumn-Ultra-Boosts-Zapatillas-Deportivas-Hombre-Man-Fashion-Breathable-Casual-Shoes-Fly-Woven.jpg_640x640.jpg",
         price: 200),
   ];
@@ -41,11 +41,18 @@ class _PopularProductsState extends State<PopularProducts> {
             builder: (context) => ProductScreen(title: productList[1].name, image: productList[1].image, price: productList[1].price),
           ),
         );
-      }      if (message.payload.contains("ADG")) {
+      } else if (message.payload.contains("Nike")) {
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => ProductScreen(title: productList[2].name, image: productList[2].image, price: productList[2].price),
+          ),
+        );
+      } else if(message.payload.contains("Jordans")){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductScreen(title: productList[3].name, image: productList[3].image, price: productList[3].price),
           ),
         );
       }
